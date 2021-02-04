@@ -1,7 +1,16 @@
 import Head from 'next/head'
+import Lottie from '../src/Components/Lottie'
+import rocket from '../src/Assets/47199-launch.json'
 
 export const Home = (): JSX.Element => (
   <div className="container">
+    <Lottie
+      autoplay
+      loop
+      animation={rocket}
+      width="20%"
+      onComplete={() => console.log("Finalizou :)")}
+    />
     <Head>
       <title>Create Next App</title>
       <link rel="icon" href="/favicon.ico" />
