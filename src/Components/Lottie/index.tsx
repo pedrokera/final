@@ -6,11 +6,12 @@ type Props = {
     autoplay: boolean,
     animation: any,
     onComplete?: () => void,
+    onLoopComplete?: () => void,
     width?: string | number,
     height?: string | number
 }
 
-function Lottie({ loop, autoplay, animation, onComplete, width = "100%", height = "100%" }: Props) {
+function Lottie({ loop, autoplay, animation, onComplete, onLoopComplete, width = "100%", height = "100%" }: Props) {
     const [lottiePlayer, setLottiePlayer] = useState<HTMLDivElement>();
 
     useEffect(() => {
@@ -23,7 +24,7 @@ function Lottie({ loop, autoplay, animation, onComplete, width = "100%", height 
         });
 
         player.addEventListener('complete', onComplete);
-
+        player.addEventListener("loopComplete", onLoopComplete);
     }, [lottiePlayer])
 
     return (
