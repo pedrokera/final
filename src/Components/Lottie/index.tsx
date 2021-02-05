@@ -23,8 +23,8 @@ function Lottie({ loop, autoplay, animation, onComplete, onLoopComplete, width =
             animationData: animation
         });
 
-        player.addEventListener('complete', onComplete);
-        player.addEventListener("loopComplete", onLoopComplete);
+        onComplete && player.addEventListener('complete', onComplete);
+        onLoopComplete && player.addEventListener("loopComplete", onLoopComplete);
     }, [lottiePlayer])
 
     return (
