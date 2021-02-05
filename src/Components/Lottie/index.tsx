@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import LottiePlayer from 'lottie-web';
+import styled from 'styled-components'
 
 type Props = {
     loop: boolean,
@@ -11,7 +12,27 @@ type Props = {
     height?: string | number
 }
 
-function Lottie({ loop, autoplay, animation, onComplete, onLoopComplete, width = "100%", height = "100%" }: Props) {
+type LottiePlayerContainerProps = {
+    sizes: {
+        width: string | number,
+        height: string | number
+    }
+}
+
+const LottiePlayerContainer = styled.div<LottiePlayerContainerProps>`
+    width: ${({ sizes }) => sizes.width};
+    height: ${({ sizes }) => sizes.height};
+
+    @media(max-width: 884px){
+        width: 50%;
+    }
+
+    @media(max-width: 400px){
+        width: 60%;
+    }
+`;
+
+function Lottie({ loop, autoplay, animation, onComplete, onLoopComplete, width = "20%", height = "20%" }: Props) {
     const [lottiePlayer, setLottiePlayer] = useState<HTMLDivElement>();
 
     useEffect(() => {
@@ -28,7 +49,7 @@ function Lottie({ loop, autoplay, animation, onComplete, onLoopComplete, width =
     }, [lottiePlayer])
 
     return (
-        <div style={{ width, height }} ref={(ref: HTMLDivElement) => setLottiePlayer(ref)}></div>
+        <LottiePlayerContainer sizes={{ width, height }} ref={(ref: HTMLDivElement) => setLottiePlayer(ref)} />
     )
 }
 
